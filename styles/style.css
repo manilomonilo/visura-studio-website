@@ -1,0 +1,451 @@
+@import url(normilize.css);
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 100;
+    src: url('../assets/Fonts/poppins-thin-webfont.woff2') format('woff2'),
+        url('../assets/Fonts/poppins-thin-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 200;
+    src: url('../assets/Fonts/poppins-extralight-webfont.woff2') format('woff2'),
+        url('../assets/Fonts/poppins-extralight-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    src: url('../assets/Fonts/poppins-regular-webfont.woff2') format('woff2'),
+        url('../assets/Fonts/poppins-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 700;
+    src: url('../assets/Fonts/poppins-semibold-webfont.woff2') format('woff2'),
+        url('../assets/Fonts/poppins-semibold-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-weight: 900;
+    src: url('../assets/Fonts/poppins-bold-webfont.woff2') format('woff2'),
+        url('../assets/Fonts/poppins-bold-webfont.woff') format('woff');
+}
+
+
+:root {
+    --clr-black-bg: #000;
+    --clr-black: #000;
+    --clr-while: #FFF;
+    --clr-red: #fe3131;
+
+    --fw-extralight: 100;
+    --fw-thin: 200;
+    --fw-regular: 400;
+    --fw-semibold: 700;
+    --fw-bold: 900;
+
+    --fs-nav-item: 1.2rem;
+    --fs-parg: 1rem;
+    --fs-h1: 1.6rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+video,
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    scroll-behavior: smooth;
+    font-family: 'Poppins';
+    height: 1000px;
+    background: var(--clr-black-bg);
+    color: var(--clr-while);
+}
+
+.black-screen {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--clr-black);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes BlackScreenTitle {
+    /* add an animation for the text when show up */
+}
+
+.black-screen-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: var(--fw-regular);
+    font-size: 3rem;
+}
+
+.we-capture {
+    display: inline-block;
+    font-size: 3rem;
+}
+
+.capture-word {
+    color: var(--clr-red);
+}
+
+.the-moment {
+    font-size: 3rem;
+}
+
+.eye {
+    margin: 40px;
+    rotate: 40deg;
+    background: transparent;
+    width: 120px;
+    height: 120px;
+    border: 2px red solid;
+    border-radius: 50% 5% 50% 5%;
+    overflow: hidden;
+    transition: all 2s ease;
+    transform: translateZ(0);
+}
+
+
+@keyframes goCloser {
+    from {
+        transform: translateZ(0);
+        display: fixed;
+    }
+
+    to {
+        transform: translateZ(9000px) scale(20);
+        display: none;
+    }
+}
+
+@keyframes Disappear {
+    from {
+        display: fixed;
+    }
+
+    to {
+        display: none;
+    }
+}
+
+.changed {
+    animation: goCloser 3s ease 0s 1,
+    Disappear .01s ease 2.5s 1 forwards;
+}
+
+@keyframes eyeMoving {
+
+    0%,
+    10% {
+        top: 40px;
+        left: 70px;
+    }
+
+    33%,
+    40% {
+        top: 0px;
+        left: 50px;
+        width: 30px;
+
+        /* add an anmition for the eye to close with changin the border-radius */
+        .eye {
+            border-radius: 100% 5% 100% 5%;
+        }
+    }
+
+    67%,
+    77% {
+        top: 60px;
+        left: 20px;
+    }
+
+    100% {
+        top: 40px;
+        left: 70px;
+    }
+}
+
+.eye::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    background-color: var(--clr-red);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    outline: 7px white solid;
+    animation: eyeMoving 7s ease 0s infinite;
+}
+
+@keyframes Rec {
+    0% {
+        opacity: 100%;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+.click {
+    animation: Rec 2s ease-in 0s infinite reverse;
+    position: fixed;
+    bottom: 120px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.click::after {
+    content: "";
+    position: absolute;
+    top: 4.2px;
+    left: -20px;
+    width: 15px;
+    height: 15px;
+    background: red;
+    border-radius: 50%;
+}
+
+.main-vid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    transition: all 1s ease;
+    position: relative;
+    margin-left: 1.5rem;
+}
+
+.logo-right {
+    animation: textSlidRight 2s ease 2.5s 1 forwards;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url(../assets/logo/Logo-red-bg-transparent.png);
+    background-size: cover;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.logo:hover {
+    animation: Rec 2s ease-in 1s infinite reverse;
+    transform: translate(20px);
+}
+
+.logo:hover::after {
+    transform: translate(-35px);
+    opacity: 1;
+}
+
+.nav {
+    transform: translateY(-100px);
+    margin-right: 1.5rem;
+    width: 50%;
+}
+
+.nav-slid {
+    animation: textSlidDown 2s ease 2.5s 1 forwards;
+}
+
+@keyframes textSlidDown {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes textSlidRight {
+    from {
+        transform: translate(-100px);
+    }
+    to {
+        transform: translate(0);
+    }
+}
+
+@keyframes textSlidUp {
+    from {
+        transform: translateY(400px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-list-item {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: var(--fs-nav-item);
+}
+
+.main-section {
+    height: 90vh;
+    /* border: red 1px solid; */
+}
+
+.main-section-content {
+    position: absolute;
+    left: 30px;
+    bottom: 50px;
+    width: 35%;
+}
+
+.main-section-content-slid {
+    animation: textSlidUp 2s ease 2.5s 1 forwards;
+}
+
+.main-section-title {
+    color: var(--clr-red);
+    font-size: var(--fs-h1);
+    font-weight: var(--fw-semibold);
+}
+
+.main-section-parg {
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-parg);
+}
+
+.art-section {
+    /* this section must scroll to the right side */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.asset-container {
+    border: #fe3131 2px solid;
+    padding: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    /* border: red 1px solid; */
+}
+
+/* xs */
+
+@media (min-width: 475px) {
+    .container {
+        max-width: 475px;
+    }
+}
+
+/* sm */
+@media (min-width: 650px) {
+    .container {
+        max-width: 650px;
+    }
+}
+
+/* md */
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+        /* border: green 1px solid; */
+    }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1536px;
+    }
+}
